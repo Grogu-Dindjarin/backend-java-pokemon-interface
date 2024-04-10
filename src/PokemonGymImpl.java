@@ -51,15 +51,22 @@ public class PokemonGymImpl implements PokemonGym {
     public void fightRound(PokemonTrainer trainer, PokemonGymOwner owner, Pokemon pokemon, Pokemon gymPokemon) {
         Scanner speler_A = new Scanner(System.in);
         while (pokemon.getHp() > 0 && gymPokemon.getHp() > 0) {
-
             System.out.println("Its " + owner.getName() + "'s turn to attack");
+            if(pokemon.getHp() <= 0 || gymPokemon.getHp() <= 0) {
+                break;
+            }
             gymOwnerAttacks(gymPokemon, pokemon);
-            System.out.println("Its " + trainer.getName() + "'s turn to attack");
-            attackOrChange(pokemon, gymPokemon, trainer, owner);
 
+            System.out.println("Its " + trainer.getName() + "'s turn to attack");
+            if(pokemon.getHp() <= 0 || gymPokemon.getHp() <= 0) {
+                break;
+            }
+            attackOrChange(pokemon, gymPokemon, trainer, owner);
         }
-        if(pokemon.getHp() <= 0){
+
+        if (pokemon.getHp() <= 0){
             System.out.println(gymPokemon.getName() + " has defeated " + pokemon.getName());
+
         } else if (gymPokemon.getHp() <= 0){
             System.out.println(pokemon.getName() + " has defeated " + gymPokemon.getName());
         }
@@ -159,6 +166,7 @@ public class PokemonGymImpl implements PokemonGym {
                     case "inferno" -> fire.inferno(pokemon, gymPokemon);
                     case "pyroball" -> fire.pyroBall(pokemon, gymPokemon);
                     case "firelash" -> fire.fireLash(pokemon, gymPokemon);
+                    case "throwfood" -> fire.throwFood(pokemon.getFood());
                     default -> fire.flameThrower(pokemon, gymPokemon);
                 }
             }
@@ -246,18 +254,26 @@ public class PokemonGymImpl implements PokemonGym {
     @Override
     public void attackOrChange(Pokemon pokemon, Pokemon gymPokemon, PokemonTrainer trainer, PokemonGymOwner gym){
         Scanner speler_A = new Scanner(System.in);
+        List<String> foods = Arrays.asList("firenougats", "Pokeflakes", "Everything", "Pokebrocks");
 
-        System.out.println("Do you want to attack or change your pokemon?");
-        System.out.println("Type a for attack or c for change");
+        System.out.println("Do you want to attack, throw food or change your pokemon?");
+        System.out.println("Type a for attack, t for throw food, or c for change");
         String choice = speler_A.nextLine();
 
         if (choice.equalsIgnoreCase("a")) {
             String attack = chooseAttackPlayer(pokemon);
             performAttackPlayer(pokemon, gymPokemon, attack);
-        } else {
+        } else if (choice.equalsIgnoreCase("c")) {
             pokemon = choosePokemon(trainer);
             attackOrChange(pokemon, gymPokemon, trainer, gym);
             fightRound(trainer, gym, pokemon, gymPokemon);
+        } else if (choice.equalsIgnoreCase("t")) {
+            System.out.println("Which food will you throw at your Pokémon?");
+            System.out.println(foods);
+            pokemon.throwFood(choice);
+        } else {
+            System.out.println("Invalid choice. Please try again.");
+            attackOrChange(pokemon, gymPokemon, trainer, gym);
         }
     }
 
