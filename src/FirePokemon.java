@@ -14,6 +14,10 @@ public class FirePokemon extends Pokemon {
         this.typeAttackMultipliers.put("water", 3);
     }
 
+    public void throwFood(String food) {
+
+    }
+
     public String getType() {
         return "fire";
     }
@@ -34,18 +38,18 @@ public class FirePokemon extends Pokemon {
         int baseDmg = 9;
         int infernoDmg = calculateDamage(baseDmg, getOpponentMultiplier(enemy, typeAttackMultipliers));
 
-        int pokemonEnemyHp = enemy.setHp(enemy.getHp() - infernoDmg);
+        enemy.setHp(enemy.getHp() - infernoDmg);
         System.out.printf("%s! Whoosh! CRACK! inferno deals -%sdmg to %s, %s has %shp left %n",
-                pokemon.getSound(), Main.ANSI_RED + infernoDmg + Main.ANSI_RESET, enemy.getName(), enemy.getName(), Main.ANSI_BLACK + pokemonEnemyHp + Main.ANSI_RESET);
+                pokemon.getSound(), Main.ANSI_RED + infernoDmg + Main.ANSI_RESET, enemy.getName(), enemy.getName(), Main.ANSI_BLACK + enemy.getHp() + Main.ANSI_RESET);
     }
 
     void pyroBall(Pokemon pokemon, Pokemon enemy) {
         int baseDmg = 12;
         int infernoDmg = calculateDamage(baseDmg, getOpponentMultiplier(enemy, typeAttackMultipliers));
 
-        int pokemonEnemyHp = enemy.setHp(enemy.getHp() - infernoDmg);
+        enemy.setHp(enemy.getHp() - infernoDmg);
         System.out.printf("%s Swoosh! The Pyro Ball ignites with blazing fury! %s loses %shp, %s has %shp left %n",
-                pokemon.getSound(), enemy.getName(), Main.ANSI_RED + infernoDmg + Main.ANSI_RESET, enemy.getName(), Main.ANSI_BLACK + pokemonEnemyHp + Main.ANSI_RESET);
+                pokemon.getSound(), enemy.getName(), Main.ANSI_RED + infernoDmg + Main.ANSI_RESET, enemy.getName(), Main.ANSI_BLACK + enemy.getHp() + Main.ANSI_RESET);
 
     }
 
@@ -53,17 +57,17 @@ public class FirePokemon extends Pokemon {
         int baseDmg = 15;
         int fireLashDmg = calculateDamage(baseDmg, getOpponentMultiplier(enemy, typeAttackMultipliers));
 
-        int pokemonEnemyHp = enemy.setHp(enemy.getHp() - fireLashDmg);
+        enemy.setHp(enemy.getHp() - fireLashDmg);
         System.out.printf("%s Ssss... Woosh! Fire Lash lashes out, engulfing %s in searing flames, %s loses %shp, %s has %shp left %n",
-                pokemon.getSound(), enemy.getName(), enemy.getName(), Main.ANSI_RED + fireLashDmg + Main.ANSI_RESET, enemy.getName(), Main.ANSI_BLACK + pokemonEnemyHp + Main.ANSI_RESET);
+                pokemon.getSound(), enemy.getName(), enemy.getName(), Main.ANSI_RED + fireLashDmg + Main.ANSI_RESET, enemy.getName(), Main.ANSI_BLACK + enemy.getHp() + Main.ANSI_RESET);
     }
 
     void flameThrower(Pokemon pokemon, Pokemon enemy) {
         int baseDmg = 20;
         int flameThrowerDmg = calculateDamage(baseDmg, getOpponentMultiplier(enemy, typeAttackMultipliers));
 
-        int pokemonEnemyHp = enemy.setHp(enemy.getHp() - flameThrowerDmg);
+        enemy.setHp(enemy.getHp() - flameThrowerDmg);
         System.out.printf("%s Fwoosh! Sizzle! Burn! A searing jet of flames erupts from the Pokémon's mouth! %s loses %shp and has %shp left %n",
-             pokemon.getSound(), enemy.getName(), Main.ANSI_RED + flameThrowerDmg + Main.ANSI_RESET, Main.ANSI_BLACK + pokemonEnemyHp + Main.ANSI_RESET);
+             pokemon.getSound(), enemy.getName(), Main.ANSI_RED + flameThrowerDmg + Main.ANSI_RESET, Main.ANSI_BLACK + enemy.getHp() + Main.ANSI_RESET);
     }
 }

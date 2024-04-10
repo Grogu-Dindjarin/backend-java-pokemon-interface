@@ -35,28 +35,28 @@ public class WaterPokemon extends Pokemon {
         int baseDmg = 9;
         int surfDmg = calculateDamage(baseDmg, getOpponentMultiplier(enemy, typeAttackMultipliers));
 
-        int pokemonEnemyHp = enemy.setHp(enemy.getHp() - surfDmg);
+        enemy.setHp(enemy.getHp() - surfDmg);
         System.out.printf("%s's surf dealt %s to %s, %s has %s hp %n",
-                pokemon.getName(), Main.ANSI_RED + surfDmg + Main.ANSI_RESET, enemy.getName(), enemy.getName(), Main.ANSI_BLACK + pokemonEnemyHp + Main.ANSI_RESET);
+                pokemon.getName(), Main.ANSI_RED + surfDmg + Main.ANSI_RESET, enemy.getName(), enemy.getName(), Main.ANSI_BLACK + enemy.getHp() + Main.ANSI_RESET);
     }
 
     public void hydroPump(Pokemon pokemon, Pokemon enemy) {
         int baseDmg = 11;
         int hydroPumpDmg = calculateDamage(baseDmg, getOpponentMultiplier(enemy, typeAttackMultipliers));
 
-        int pokemonEnemyHp = enemy.setHp(enemy.getHp() - hydroPumpDmg);
+        enemy.setHp(enemy.getHp() - hydroPumpDmg);
 
         System.out.printf("%s's hydro pump dealt %s to %s, %s has %s hp %n",
-                pokemon.getName(), Main.ANSI_RED + hydroPumpDmg + Main.ANSI_RESET, enemy.getName(), enemy.getName(), Main.ANSI_BLACK + pokemonEnemyHp + Main.ANSI_RESET);
+                pokemon.getName(), Main.ANSI_RED + hydroPumpDmg + Main.ANSI_RESET, enemy.getName(), enemy.getName(), Main.ANSI_BLACK + enemy.getHp() + Main.ANSI_RESET);
     }
 
     public void hydroCanon(Pokemon pokemon, Pokemon enemy) {
         int baseDmg = 15;
         int hydroCanonDmg = calculateDamage(baseDmg, getOpponentMultiplier(enemy, typeAttackMultipliers));
 
-        int pokemonEnemyHp = enemy.setHp(enemy.getHp() - hydroCanonDmg);
+        enemy.setHp(enemy.getHp() - hydroCanonDmg);
         System.out.printf("%s's surf dealt %s to %s, %s has %s hp %n",
-                pokemon.getName(), Main.ANSI_RED + hydroCanonDmg + Main.ANSI_RESET, enemy.getName(), enemy.getName(), Main.ANSI_BLACK + pokemonEnemyHp + Main.ANSI_RESET);
+                pokemon.getName(), Main.ANSI_RED + hydroCanonDmg + Main.ANSI_RESET, enemy.getName(), enemy.getName(), Main.ANSI_BLACK + enemy.getHp() + Main.ANSI_RESET);
     }
 
     public void rainDance(Pokemon pokemon, Pokemon enemy) {
@@ -70,23 +70,23 @@ public class WaterPokemon extends Pokemon {
             case "electric" -> System.out.printf("%s's rain dance has no effect on %s %n", pokemonName, pokemonEnemyName);
             case "grass" -> {
                 int hpBoost = 15;
-                int pokemonEnemyHp = enemy.setHp(enemy.getHp() + hpBoost);
+                enemy.setHp(enemy.getHp() + hpBoost);
 
                 System.out.printf("%s's rain dance heals %s with %shp! %s has %s hp left !%n",
-                        pokemonName, pokemonEnemyName, Main.ANSI_GREEN + hpBoost + Main.ANSI_RESET, pokemonEnemyName, Main.ANSI_BLACK + pokemonEnemyHp + Main.ANSI_RESET);
+                        pokemonName, pokemonEnemyName, Main.ANSI_GREEN + hpBoost + Main.ANSI_RESET, pokemonEnemyName, Main.ANSI_BLACK + enemy.getHp() + Main.ANSI_RESET);
             }
             case "fire" -> {
                 int rainDanceDmg = calculateDamage(baseDmg, getOpponentMultiplier(enemy, typeAttackMultipliers));
-                int pokemonEnemyHp = enemy.setHp(enemy.getHp() - rainDanceDmg);
+                enemy.setHp(enemy.getHp() - rainDanceDmg);
 
                 System.out.printf("%s's rain dance deals %s to %s, %s has %s hp left %n",
-                        pokemonName, Main.ANSI_RED + rainDanceDmg + Main.ANSI_RESET, pokemonEnemyName, pokemonEnemyName, Main.ANSI_BLACK + pokemonEnemyHp + Main.ANSI_RESET);
+                        pokemonName, Main.ANSI_RED + rainDanceDmg + Main.ANSI_RESET, pokemonEnemyName, pokemonEnemyName, Main.ANSI_BLACK + enemy.getHp() + Main.ANSI_RESET);
             }
             case "water" -> {
-                int pokemonEnemyHp = enemy.setHp(enemy.getHp() - baseDmg);
+                enemy.setHp(enemy.getHp() - baseDmg);
 
                 System.out.printf("Rain dance deals %ddmg to %s, %s has %s hp left%n",
-                        baseDmg, pokemonEnemyName, pokemonEnemyName, pokemonEnemyHp);
+                        baseDmg, pokemonEnemyName, pokemonEnemyName, enemy.getHp());
             }
         }
     }
