@@ -66,9 +66,11 @@ public class PokemonGymImpl implements PokemonGym {
 
         if (pokemon.getHp() <= 0){
             System.out.println(gymPokemon.getName() + " has defeated " + pokemon.getName());
+            System.out.printf("Your %s has fainted. You've lost the battle. Better luck next time!%n", pokemon.getName());
 
         } else if (gymPokemon.getHp() <= 0){
             System.out.println(pokemon.getName() + " has defeated " + gymPokemon.getName());
+            System.out.println("Congratulations! You've won the battle and earned the gym badge!");
         }
 
         System.out.println("Would you like to keep playing? yes or no");
